@@ -1,4 +1,4 @@
-package org.fossd.lnetty.example;
+package org.fossd.lnetty.discard;
 
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
