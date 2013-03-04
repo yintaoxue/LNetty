@@ -15,6 +15,7 @@ public class HttpChannelPipelineFactory implements ChannelPipelineFactory {
 		pipeline.addLast("encoder", new HttpResponseEncoder());
 		// http处理handler
 		pipeline.addLast("handler", new HttpServerHandler());
+		pipeline.addLast("handler2", new HttpServerHandler2());
 		return pipeline;
 	}
 

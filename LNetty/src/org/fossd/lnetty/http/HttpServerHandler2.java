@@ -19,7 +19,7 @@ import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 import org.jboss.netty.handler.codec.http.HttpVersion;
 import org.jboss.netty.util.CharsetUtil;
 
-public class HttpServerHandler extends SimpleChannelUpstreamHandler {
+public class HttpServerHandler2 extends SimpleChannelUpstreamHandler {
 
 	@Override
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
@@ -33,16 +33,15 @@ public class HttpServerHandler extends SimpleChannelUpstreamHandler {
 		
 		HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
 		ChannelBuffer buffer = new DynamicChannelBuffer(2048);
-		buffer.writeBytes("Hello,World!".getBytes("UTF-8"));
+		buffer.writeBytes("OK!".getBytes("UTF-8"));
 		response.setContent(buffer);
 		response.setHeader("Content-Type", "text/html; charset=UTF-8");
 		response.setHeader("Content-Length", response.getContent().writerIndex());
 		Channel ch = e.getChannel();
 		//Write the initials line and the header
 		ch.write(response);
-//		ch.disconnect();
-//		ch.close();
-		ctx.sendUpstream(e);
+		ch.disconnect();
+		ch.close();
 	}
 
 	@Override
